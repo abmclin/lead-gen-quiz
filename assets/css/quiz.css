@@ -1,0 +1,21 @@
+#surveyElement, #surveyResult {
+	width: 40vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#surveyResult {
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 1300px) {
+	#surveyElement, #surveyResult {
+		width: 60vw;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	#surveyElement, #surveyResult {
+		width: 100%;
+	}
+}
