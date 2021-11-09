@@ -215,6 +215,11 @@
 									 "text": "Vigilant & prepared"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "personality_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -226,6 +231,11 @@
 							 "name": "dream_question",
 							 "title": "What's your biggest dream?",
 							 "isRequired": true
+						 },
+						 {
+							 "type": "html",
+							 "name": "dream_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -263,6 +273,11 @@
 									 "text": "Other"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "big_goal_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -284,6 +299,11 @@
 									 "text": "No"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "strategy_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -305,6 +325,11 @@
 									 "text": "No"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "worked_with_financial_professional_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -334,6 +359,11 @@
 									 "text": "I could use some help"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "financially_savvy_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -363,6 +393,11 @@
 									 "text": "$1 million+"
 								 }
 							 ]
+						 },
+						 {
+							 "type": "html",
+							 "name": "investment_amount_page_next",
+							 "html": "<div class=\"sv_nav\"><input type=\"button\" onclick=\"survey.nextPage();\" value=\"Next\" class=\"sv_next_btn\"></div>"
 						 }
 					 ]
 				 },
@@ -422,42 +457,42 @@
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Retirement'",
 					 "setToName": "temp_result",
-					 "setValue": "Retirement",
+					 "setValue": "retirement-result",
 					 "isVariable": true
 				 },
 				 {
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Lower My Taxes'",
 					 "setToName": "temp_result",
-					 "setValue": "Lower My Taxes",
+					 "setValue": "tax-result",
 					 "isVariable": true
 				 },
 				 {
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Business Funding or Exit'",
 					 "setToName": "temp_result",
-					 "setValue": "Business Funding or Exit",
+					 "setValue": "business-result",
 					 "isVariable": true
 				 },
 				 {
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Maximize My Income'",
 					 "setToName": "temp_result",
-					 "setValue": "Maximize My Income",
+					 "setValue": "asset-protection-result",
 					 "isVariable": true
 				 },
 				 {
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Build My Savings'",
 					 "setToName": "temp_result",
-					 "setValue": "Build My Savings",
+					 "setValue": "planning-result",
 					 "isVariable": true
 				 },
 				 {
 					 "type": "setvalue",
 					 "expression": "{big_goal_question} = 'Other'",
 					 "setToName": "temp_result",
-					 "setValue": "Other",
+					 "setValue": "planning-result",
 					 "isVariable": true
 				 }
 			 ],
@@ -477,14 +512,11 @@
 		 }
 
 		 window.survey = new Survey.Model(quiz_json);
-
+		 survey.showNavigationButtons = false;
 		 survey
 			 .onComplete
-			 .add(function (sender) {
-				 document
-					 .querySelector('#surveyResultJSON')
-					 .textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
-				 document.querySelector('#surveyResult').style.visibility = 'visible';
+			 .add(function (survey) {
+				 location.href="results.html?quiz_source=851c27f1035c5fadf20941da9842eddf&quiz_result=" + survey.data.quiz_result
 			 });
 
 		 $("#surveyElement").Survey({model: survey});
